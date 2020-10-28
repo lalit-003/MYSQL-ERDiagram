@@ -1,0 +1,899 @@
+Enter password: **************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 15
+Server version: 8.0.22 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database address_book_service;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> show databases;
++----------------------+
+| Database             |
++----------------------+
+| address_book_service |
+| employee_service     |
+| information_schema   |
+| mysql                |
+| performance_schema   |
+| sakila               |
+| sys                  |
+| world                |
++----------------------+
+8 rows in set (0.01 sec)
+
+mysql> show databases;
++----------------------+
+| Database             |
++----------------------+
+| address_book_service |
+| employee_service     |
+| information_schema   |
+| mysql                |
+| performance_schema   |
+| sakila               |
+| sys                  |
+| world                |
++----------------------+
+8 rows in set (0.00 sec)
+
+mysql> use address_book_service;
+Database changed
+mysql> select database();
++----------------------+
+| database()           |
++----------------------+
+| address_book_service |
++----------------------+
+1 row in set (0.00 sec)
+
+mysql> create table AddressBook_table
+    -> (
+    -> firstname  varchar(20) NOT NULL
+    -> lastname   varchar(20)  NOT NULL
+    -> address    varchar(30)  NOT NULL
+    -> city       varchar(20)  NOT NULL
+    -> state      varchar(20)   NOT NULL
+    -> zip        INT unsigned NOT NULL
+    -> phonenumber bigint NOT NULL
+    -> email       varchar (20)  NOT NULL
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'lastname   varchar(20)  NOT NULL
+address    varchar(30)  NOT NULL
+city       var' at line 4
+mysql> create table AddressBook_table
+    -> (
+    -> firstname  varchar(20) NOT NULL,
+    -> lastname   varchar(20)  NOT NULL,
+    -> address    varchar(30)  NOT NULL,
+    -> city       varchar(20)  NOT NULL,
+    -> state      varchar(20)   NOT NULL,
+    -> zip        INT unsigned NOT NULL,
+    -> phonenumber bigint NOT NULL,
+    -> email       varchar (20)  NOT NULL,
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 11
+mysql>
+mysql> create table AddressBook_table
+    -> (
+    -> firstname  varchar(20) NOT NULL,
+    -> lastname   varchar(20)  NOT NULL,
+    -> address    varchar(30)  NOT NULL,
+    -> city       varchar(20)  NOT NULL,
+    -> state      varchar(20)   NOT NULL,
+    -> zip        INT unsigned NOT NULL,
+    -> phonenumber bigint NOT NULL,
+    -> email       varchar(20)  NOT NULL,
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 11
+mysql> create table AddressBook_table
+    -> (
+    -> firstname  varchar(20) NOT NULL,
+    -> lastname   varchar(20)  NOT NULL,
+    -> address    varchar(30)  NOT NULL,
+    -> city       varchar(20)  NOT NULL,
+    -> state      varchar(20)   NOT NULL,
+    -> zip        INT unsigned NOT NULL,
+    -> phonenumber varchar(12) NOT NULL,
+    -> email       varchar(20)  NOT NULL,
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 11
+mysql> create table AddressBook_table
+    -> (
+    -> firstname  varchar(20) NOT NULL,
+    -> lastname   varchar(20)  NOT NULL,
+    -> address    varchar(30)  NOT NULL,
+    -> city       varchar(20)  NOT NULL,
+    -> state      varchar(20)   NOT NULL,
+    -> zip        INT unsigned NOT NULL,
+    -> phonenumber varchar(12) NOT NULL,
+    -> email       varchar(20)  NOT NULL,
+    ->
+    -> \c
+mysql> create table AddressBook_table
+    -> (
+    -> firstname  varchar(20) NOT NULL,
+    -> lastname   varchar(20)  NOT NULL,
+    -> address    varchar(30)  NOT NULL,
+    -> city       varchar(20)  NOT NULL,
+    -> state      varchar(20)   NOT NULL,
+    -> zip        INT unsigned NOT NULL,
+    -> phonenumber BIGINT NOT NULL,
+    -> email       varchar(20)  NOT NULL
+    -> );
+Query OK, 0 rows affected (0.09 sec)
+
+mysql>
+mysql> describe addressbook_table;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| firstname   | varchar(20)  | NO   |     | NULL    |       |
+| lastname    | varchar(20)  | NO   |     | NULL    |       |
+| address     | varchar(30)  | NO   |     | NULL    |       |
+| city        | varchar(20)  | NO   |     | NULL    |       |
+| state       | varchar(20)  | NO   |     | NULL    |       |
+| zip         | int unsigned | NO   |     | NULL    |       |
+| phonenumber | bigint       | NO   |     | NULL    |       |
+| email       | varchar(20)  | NO   |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+8 rows in set (0.01 sec)
+
+mysql> insert into addressbook_table values
+    -> ('Mohit','Gahlawat','chintels','gurgaon','haryana',12234,1223456789,'mohit@abc.com'),
+    -> ('Priya','Gahlawat','chintels','gurgaon','haryana',12234,1223456789,'priya@abc.com'),
+    -> ('Saurav','Gahlawat','sector','bhiwani','haryana',12234,1223456789,'saurav@abc.com'),
+    -> ('Aditya','singh','chintels','jaipur','rajasthan',12234,1223456789,'aditya@abc.com');
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from addressbook_table;
++-----------+----------+----------+---------+-----------+-------+-------------+----------------+
+| firstname | lastname | address  | city    | state     | zip   | phonenumber | email          |
++-----------+----------+----------+---------+-----------+-------+-------------+----------------+
+| Mohit     | Gahlawat | chintels | gurgaon | haryana   | 12234 |  1223456789 | mohit@abc.com  |
+| Priya     | Gahlawat | chintels | gurgaon | haryana   | 12234 |  1223456789 | priya@abc.com  |
+| Saurav    | Gahlawat | sector   | bhiwani | haryana   | 12234 |  1223456789 | saurav@abc.com |
+| Aditya    | singh    | chintels | jaipur  | rajasthan | 12234 |  1223456789 | aditya@abc.com |
++-----------+----------+----------+---------+-----------+-------+-------------+----------------+
+4 rows in set (0.02 sec)
+
+mysql> update addressbook_table
+    -> set address = 'malviyanagar'
+    -> where firstname = 'Aditya';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from addressbook_table;
++-----------+----------+--------------+---------+-----------+-------+-------------+----------------+
+| firstname | lastname | address      | city    | state     | zip   | phonenumber | email          |
++-----------+----------+--------------+---------+-----------+-------+-------------+----------------+
+| Mohit     | Gahlawat | chintels     | gurgaon | haryana   | 12234 |  1223456789 | mohit@abc.com  |
+| Priya     | Gahlawat | chintels     | gurgaon | haryana   | 12234 |  1223456789 | priya@abc.com  |
+| Saurav    | Gahlawat | sector       | bhiwani | haryana   | 12234 |  1223456789 | saurav@abc.com |
+| Aditya    | singh    | malviyanagar | jaipur  | rajasthan | 12234 |  1223456789 | aditya@abc.com |
++-----------+----------+--------------+---------+-----------+-------+-------------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> insert into addressbook_table values
+    -> ('Mohit1','Gahlawat','chintels','gurgaon','haryana',12234,1223456789,'mohit@abc.com');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from addressbook_table;
++-----------+----------+--------------+---------+-----------+-------+-------------+----------------+
+| firstname | lastname | address      | city    | state     | zip   | phonenumber | email          |
++-----------+----------+--------------+---------+-----------+-------+-------------+----------------+
+| Mohit     | Gahlawat | chintels     | gurgaon | haryana   | 12234 |  1223456789 | mohit@abc.com  |
+| Priya     | Gahlawat | chintels     | gurgaon | haryana   | 12234 |  1223456789 | priya@abc.com  |
+| Saurav    | Gahlawat | sector       | bhiwani | haryana   | 12234 |  1223456789 | saurav@abc.com |
+| Aditya    | singh    | malviyanagar | jaipur  | rajasthan | 12234 |  1223456789 | aditya@abc.com |
+| Mohit1    | Gahlawat | chintels     | gurgaon | haryana   | 12234 |  1223456789 | mohit@abc.com  |
++-----------+----------+--------------+---------+-----------+-------+-------------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> delete from  addressbook_table
+    -> where firstname = 'Mohit1';
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from addressbook_table;
++-----------+----------+--------------+---------+-----------+-------+-------------+----------------+
+| firstname | lastname | address      | city    | state     | zip   | phonenumber | email          |
++-----------+----------+--------------+---------+-----------+-------+-------------+----------------+
+| Mohit     | Gahlawat | chintels     | gurgaon | haryana   | 12234 |  1223456789 | mohit@abc.com  |
+| Priya     | Gahlawat | chintels     | gurgaon | haryana   | 12234 |  1223456789 | priya@abc.com  |
+| Saurav    | Gahlawat | sector       | bhiwani | haryana   | 12234 |  1223456789 | saurav@abc.com |
+| Aditya    | singh    | malviyanagar | jaipur  | rajasthan | 12234 |  1223456789 | aditya@abc.com |
++-----------+----------+--------------+---------+-----------+-------+-------------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> select (firsname , lastname ) from addressbook_table
+    -> where city = 'gurgaon';
+ERROR 1054 (42S22): Unknown column 'firsname' in 'field list'
+mysql> select (firstname , lastname ) from addressbook_table
+    -> where city = 'gurgaon';
+ERROR 1241 (21000): Operand should contain 1 column(s)
+mysql> select firstname , lastname from addressbook_table
+    -> where city = 'gurgaon';
++-----------+----------+
+| firstname | lastname |
++-----------+----------+
+| Mohit     | Gahlawat |
+| Priya     | Gahlawat |
++-----------+----------+
+2 rows in set (0.00 sec)
+
+mysql> select firstname , lastname from addressbook_table
+    -> where state = 'haryana';
++-----------+----------+
+| firstname | lastname |
++-----------+----------+
+| Mohit     | Gahlawat |
+| Priya     | Gahlawat |
+| Saurav    | Gahlawat |
++-----------+----------+
+3 rows in set (0.00 sec)
+
+mysql> select count(firstname) from addressbook_table
+    -> where city = 'gurgaon'
+    -> group by city;
++------------------+
+| count(firstname) |
++------------------+
+|                2 |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> select count(firstname) from addressbook_table
+    -> where state = 'haryana'
+    -> group by state;
++------------------+
+| count(firstname) |
++------------------+
+|                3 |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> insert into addressbook_table values
+    -> ('dinesh','Gahlawat','chintels','gurgaon','haryana',12234,1223456789,'dinesh@abc.com')
+    -> ('rajesh','Gahlawat','chintels','gurgaon','haryana',12234,1223456789,'rajesh@abc.com');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '('rajesh','Gahlawat','chintels','gurgaon','haryana',12234,1223456789,'rajesh@abc' at line 3
+mysql> insert into addressbook_table values
+    -> ('dinesh','Gahlawat','chintels','gurgaon','haryana',12234,1223456789,'dinesh@abc.com'),
+    -> ('rajesh','Gahlawat','chintels','gurgaon','haryana',12234,1223456789,'rajesh@abc.com');
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from addressbook_table;
++-----------+----------+--------------+---------+-----------+-------+-------------+----------------+
+| firstname | lastname | address      | city    | state     | zip   | phonenumber | email          |
++-----------+----------+--------------+---------+-----------+-------+-------------+----------------+
+| Mohit     | Gahlawat | chintels     | gurgaon | haryana   | 12234 |  1223456789 | mohit@abc.com  |
+| Priya     | Gahlawat | chintels     | gurgaon | haryana   | 12234 |  1223456789 | priya@abc.com  |
+| Saurav    | Gahlawat | sector       | bhiwani | haryana   | 12234 |  1223456789 | saurav@abc.com |
+| Aditya    | singh    | malviyanagar | jaipur  | rajasthan | 12234 |  1223456789 | aditya@abc.com |
+| dinesh    | Gahlawat | chintels     | gurgaon | haryana   | 12234 |  1223456789 | dinesh@abc.com |
+| rajesh    | Gahlawat | chintels     | gurgaon | haryana   | 12234 |  1223456789 | rajesh@abc.com |
++-----------+----------+--------------+---------+-----------+-------+-------------+----------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from addressbook_table
+    -> where city = 'gurgaon'
+    -> order by firstname;
++-----------+----------+----------+---------+---------+-------+-------------+----------------+
+| firstname | lastname | address  | city    | state   | zip   | phonenumber | email          |
++-----------+----------+----------+---------+---------+-------+-------------+----------------+
+| dinesh    | Gahlawat | chintels | gurgaon | haryana | 12234 |  1223456789 | dinesh@abc.com |
+| Mohit     | Gahlawat | chintels | gurgaon | haryana | 12234 |  1223456789 | mohit@abc.com  |
+| Priya     | Gahlawat | chintels | gurgaon | haryana | 12234 |  1223456789 | priya@abc.com  |
+| rajesh    | Gahlawat | chintels | gurgaon | haryana | 12234 |  1223456789 | rajesh@abc.com |
++-----------+----------+----------+---------+---------+-------+-------------+----------------+
+4 rows in set (0.00 sec)
+
+mysql> Alter table addressbook_table
+    -> add booktype varchar(20) before name;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'before name' at line 2
+mysql> Alter table addressbook_table
+    -> add booktype varchar(20) before firstname;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'before firstname' at line 2
+mysql> Alter table addressbook_table
+    -> add booktype varchar(20) after email;
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> Alter table addressbook_table
+    -> add bookname varchar(20) after email;
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from addressbook_table;
++-----------+----------+--------------+---------+-----------+-------+-------------+----------------+----------+----------+
+| firstname | lastname | address      | city    | state     | zip   | phonenumber | email          | bookname | booktype |
++-----------+----------+--------------+---------+-----------+-------+-------------+----------------+----------+----------+
+| Mohit     | Gahlawat | chintels     | gurgaon | haryana   | 12234 |  1223456789 | mohit@abc.com  | NULL     | NULL     |
+| Priya     | Gahlawat | chintels     | gurgaon | haryana   | 12234 |  1223456789 | priya@abc.com  | NULL     | NULL     |
+| Saurav    | Gahlawat | sector       | bhiwani | haryana   | 12234 |  1223456789 | saurav@abc.com | NULL     | NULL     |
+| Aditya    | singh    | malviyanagar | jaipur  | rajasthan | 12234 |  1223456789 | aditya@abc.com | NULL     | NULL     |
+| dinesh    | Gahlawat | chintels     | gurgaon | haryana   | 12234 |  1223456789 | dinesh@abc.com | NULL     | NULL     |
+| rajesh    | Gahlawat | chintels     | gurgaon | haryana   | 12234 |  1223456789 | rajesh@abc.com | NULL     | NULL     |
++-----------+----------+--------------+---------+-----------+-------+-------------+----------------+----------+----------+
+6 rows in set (0.00 sec)
+
+mysql> select * from addressbook_table;
++-----------+----------+--------------+---------+-----------+-------+-------------+----------------+----------+----------+
+| firstname | lastname | address      | city    | state     | zip   | phonenumber | email          | bookname | booktype |
++-----------+----------+--------------+---------+-----------+-------+-------------+----------------+----------+----------+
+| Mohit     | Gahlawat | chintels     | gurgaon | haryana   | 12234 |  1223456789 | mohit@abc.com  | NULL     | NULL     |
+| Priya     | Gahlawat | chintels     | gurgaon | haryana   | 12234 |  1223456789 | priya@abc.com  | NULL     | NULL     |
+| Saurav    | Gahlawat | sector       | bhiwani | haryana   | 12234 |  1223456789 | saurav@abc.com | NULL     | NULL     |
+| Aditya    | singh    | malviyanagar | jaipur  | rajasthan | 12234 |  1223456789 | aditya@abc.com | NULL     | NULL     |
+| dinesh    | Gahlawat | chintels     | gurgaon | haryana   | 12234 |  1223456789 | dinesh@abc.com | NULL     | NULL     |
+| rajesh    | Gahlawat | chintels     | gurgaon | haryana   | 12234 |  1223456789 | rajesh@abc.com | NULL     | NULL     |
++-----------+----------+--------------+---------+-----------+-------+-------------+----------------+----------+----------+
+6 rows in set (0.00 sec)
+
+mysql> update addressbook_table
+    -> set bookname = 'Book1';
+Query OK, 6 rows affected (0.01 sec)
+Rows matched: 6  Changed: 6  Warnings: 0
+
+mysql> select * from addressbook_table;
++-----------+----------+--------------+---------+-----------+-------+-------------+----------------+----------+----------+
+| firstname | lastname | address      | city    | state     | zip   | phonenumber | email          | bookname | booktype |
++-----------+----------+--------------+---------+-----------+-------+-------------+----------------+----------+----------+
+| Mohit     | Gahlawat | chintels     | gurgaon | haryana   | 12234 |  1223456789 | mohit@abc.com  | Book1    | NULL     |
+| Priya     | Gahlawat | chintels     | gurgaon | haryana   | 12234 |  1223456789 | priya@abc.com  | Book1    | NULL     |
+| Saurav    | Gahlawat | sector       | bhiwani | haryana   | 12234 |  1223456789 | saurav@abc.com | Book1    | NULL     |
+| Aditya    | singh    | malviyanagar | jaipur  | rajasthan | 12234 |  1223456789 | aditya@abc.com | Book1    | NULL     |
+| dinesh    | Gahlawat | chintels     | gurgaon | haryana   | 12234 |  1223456789 | dinesh@abc.com | Book1    | NULL     |
+| rajesh    | Gahlawat | chintels     | gurgaon | haryana   | 12234 |  1223456789 | rajesh@abc.com | Book1    | NULL     |
++-----------+----------+--------------+---------+-----------+-------+-------------+----------------+----------+----------+
+6 rows in set (0.00 sec)
+
+mysql> update addressbook_table
+    -> set booktype = 'family';
+Query OK, 6 rows affected (0.01 sec)
+Rows matched: 6  Changed: 6  Warnings: 0
+
+mysql>
+mysql>
+mysql> select * from addressbook_table;
++-----------+----------+--------------+---------+-----------+-------+-------------+----------------+----------+----------+
+| firstname | lastname | address      | city    | state     | zip   | phonenumber | email          | bookname | booktype |
++-----------+----------+--------------+---------+-----------+-------+-------------+----------------+----------+----------+
+| Mohit     | Gahlawat | chintels     | gurgaon | haryana   | 12234 |  1223456789 | mohit@abc.com  | Book1    | family   |
+| Priya     | Gahlawat | chintels     | gurgaon | haryana   | 12234 |  1223456789 | priya@abc.com  | Book1    | family   |
+| Saurav    | Gahlawat | sector       | bhiwani | haryana   | 12234 |  1223456789 | saurav@abc.com | Book1    | family   |
+| Aditya    | singh    | malviyanagar | jaipur  | rajasthan | 12234 |  1223456789 | aditya@abc.com | Book1    | family   |
+| dinesh    | Gahlawat | chintels     | gurgaon | haryana   | 12234 |  1223456789 | dinesh@abc.com | Book1    | family   |
+| rajesh    | Gahlawat | chintels     | gurgaon | haryana   | 12234 |  1223456789 | rajesh@abc.com | Book1    | family   |
++-----------+----------+--------------+---------+-----------+-------+-------------+----------------+----------+----------+
+6 rows in set (0.00 sec)
+
+mysql> update addressbook_table
+    -> set bookname = 'Book2'
+    -> where firstname = 'dinesh' or firstname = 'Aditya';
+Query OK, 2 rows affected (0.01 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select * from addressbook_table;
++-----------+----------+--------------+---------+-----------+-------+-------------+----------------+----------+----------+
+| firstname | lastname | address      | city    | state     | zip   | phonenumber | email          | bookname | booktype |
++-----------+----------+--------------+---------+-----------+-------+-------------+----------------+----------+----------+
+| Mohit     | Gahlawat | chintels     | gurgaon | haryana   | 12234 |  1223456789 | mohit@abc.com  | Book1    | family   |
+| Priya     | Gahlawat | chintels     | gurgaon | haryana   | 12234 |  1223456789 | priya@abc.com  | Book1    | family   |
+| Saurav    | Gahlawat | sector       | bhiwani | haryana   | 12234 |  1223456789 | saurav@abc.com | Book1    | family   |
+| Aditya    | singh    | malviyanagar | jaipur  | rajasthan | 12234 |  1223456789 | aditya@abc.com | Book2    | family   |
+| dinesh    | Gahlawat | chintels     | gurgaon | haryana   | 12234 |  1223456789 | dinesh@abc.com | Book2    | family   |
+| rajesh    | Gahlawat | chintels     | gurgaon | haryana   | 12234 |  1223456789 | rajesh@abc.com | Book1    | family   |
++-----------+----------+--------------+---------+-----------+-------+-------------+----------------+----------+----------+
+6 rows in set (0.00 sec)
+
+mysql> update addressbook_table
+    -> set booktype = 'friends'
+    -> where firstname = 'dinesh' or firstname = 'Aditya';
+Query OK, 2 rows affected (0.01 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select * from addressbook_table;
++-----------+----------+--------------+---------+-----------+-------+-------------+----------------+----------+----------+
+| firstname | lastname | address      | city    | state     | zip   | phonenumber | email          | bookname | booktype |
++-----------+----------+--------------+---------+-----------+-------+-------------+----------------+----------+----------+
+| Mohit     | Gahlawat | chintels     | gurgaon | haryana   | 12234 |  1223456789 | mohit@abc.com  | Book1    | family   |
+| Priya     | Gahlawat | chintels     | gurgaon | haryana   | 12234 |  1223456789 | priya@abc.com  | Book1    | family   |
+| Saurav    | Gahlawat | sector       | bhiwani | haryana   | 12234 |  1223456789 | saurav@abc.com | Book1    | family   |
+| Aditya    | singh    | malviyanagar | jaipur  | rajasthan | 12234 |  1223456789 | aditya@abc.com | Book2    | friends  |
+| dinesh    | Gahlawat | chintels     | gurgaon | haryana   | 12234 |  1223456789 | dinesh@abc.com | Book2    | friends  |
+| rajesh    | Gahlawat | chintels     | gurgaon | haryana   | 12234 |  1223456789 | rajesh@abc.com | Book1    | family   |
++-----------+----------+--------------+---------+-----------+-------+-------------+----------------+----------+----------+
+6 rows in set (0.00 sec)
+
+mysql> select count(firstname)
+    -> from addressbook_table
+    -> where booktype = 'family';
++------------------+
+| count(firstname) |
++------------------+
+|                4 |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> select count(firstname)
+    -> from addressbook_table
+    -> where booktype = 'friends';
++------------------+
+| count(firstname) |
++------------------+
+|                2 |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> insert into addressbook_table values
+    -> ('sumit','phogat','makrani','bhiwani','haryana',12234,1223456789,'sumit@abc.com','Book1','friends');
+Query OK, 1 row affected (0.01 sec)
+
+mysql>
+mysql> select * from addressbook_table;
++-----------+----------+--------------+---------+-----------+-------+-------------+----------------+----------+----------+
+| firstname | lastname | address      | city    | state     | zip   | phonenumber | email          | bookname | booktype |
++-----------+----------+--------------+---------+-----------+-------+-------------+----------------+----------+----------+
+| Mohit     | Gahlawat | chintels     | gurgaon | haryana   | 12234 |  1223456789 | mohit@abc.com  | Book1    | family   |
+| Priya     | Gahlawat | chintels     | gurgaon | haryana   | 12234 |  1223456789 | priya@abc.com  | Book1    | family   |
+| Saurav    | Gahlawat | sector       | bhiwani | haryana   | 12234 |  1223456789 | saurav@abc.com | Book1    | family   |
+| Aditya    | singh    | malviyanagar | jaipur  | rajasthan | 12234 |  1223456789 | aditya@abc.com | Book2    | friends  |
+| dinesh    | Gahlawat | chintels     | gurgaon | haryana   | 12234 |  1223456789 | dinesh@abc.com | Book2    | friends  |
+| rajesh    | Gahlawat | chintels     | gurgaon | haryana   | 12234 |  1223456789 | rajesh@abc.com | Book1    | family   |
+| sumit     | phogat   | makrani      | bhiwani | haryana   | 12234 |  1223456789 | sumit@abc.com  | Book1    | friends  |
++-----------+----------+--------------+---------+-----------+-------+-------------+----------------+----------+----------+
+7 rows in set (0.02 sec)
+
+mysql> insert into addressbook_table values
+    -> ('sumit','phogat','makrani','bhiwani','haryana',12234,1223456789,'sumit@abc.com','Book2','family');
+Query OK, 1 row affected (0.01 sec)
+
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql>
+mysql> select * from addressbook_table;
++-----------+----------+--------------+---------+-----------+-------+-------------+----------------+----------+----------+
+| firstname | lastname | address      | city    | state     | zip   | phonenumber | email          | bookname | booktype |
++-----------+----------+--------------+---------+-----------+-------+-------------+----------------+----------+----------+
+| Mohit     | Gahlawat | chintels     | gurgaon | haryana   | 12234 |  1223456789 | mohit@abc.com  | Book1    | family   |
+| Priya     | Gahlawat | chintels     | gurgaon | haryana   | 12234 |  1223456789 | priya@abc.com  | Book1    | family   |
+| Saurav    | Gahlawat | sector       | bhiwani | haryana   | 12234 |  1223456789 | saurav@abc.com | Book1    | family   |
+| Aditya    | singh    | malviyanagar | jaipur  | rajasthan | 12234 |  1223456789 | aditya@abc.com | Book2    | friends  |
+| dinesh    | Gahlawat | chintels     | gurgaon | haryana   | 12234 |  1223456789 | dinesh@abc.com | Book2    | friends  |
+| rajesh    | Gahlawat | chintels     | gurgaon | haryana   | 12234 |  1223456789 | rajesh@abc.com | Book1    | family   |
+| sumit     | phogat   | makrani      | bhiwani | haryana   | 12234 |  1223456789 | sumit@abc.com  | Book1    | friends  |
+| sumit     | phogat   | makrani      | bhiwani | haryana   | 12234 |  1223456789 | sumit@abc.com  | Book2    | family   |
++-----------+----------+--------------+---------+-----------+-------+-------------+----------------+----------+----------+
+8 rows in set (0.00 sec)
+
+
+
+
+------------------------------Normalization and ER diagram -----------------------------------------------------------
+
+
+
+Enter password: **************
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 31
+Server version: 8.0.22 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++----------------------+
+| Database             |
++----------------------+
+| address_book_service |
+| employee_service     |
+| information_schema   |
+| mysql                |
+| performance_schema   |
+| sakila               |
+| sys                  |
+| world                |
++----------------------+
+8 rows in set (0.01 sec)
+
+mysql> use address_book_service;
+Database changed
+mysql> show tables;
++--------------------------------+
+| Tables_in_address_book_service |
++--------------------------------+
+| addressbook_table              |
++--------------------------------+
+1 row in set (0.01 sec)
+
+
+mysql> select * from addressbook_table;
++-----------+----------+--------------+---------+-----------+-------+-------------+----------------+----------+----------+
+| firstname | lastname | address      | city    | state     | zip   | phonenumber | email          | bookname | booktype |
++-----------+----------+--------------+---------+-----------+-------+-------------+----------------+----------+----------+
+| Mohit     | Gahlawat | chintels     | gurgaon | haryana   | 12234 |  1223456789 | mohit@abc.com  | Book1    | family   |
+| Priya     | Gahlawat | chintels     | gurgaon | haryana   | 12234 |  1223456789 | priya@abc.com  | Book1    | family   |
+| Saurav    | Gahlawat | sector       | bhiwani | haryana   | 12234 |  1223456789 | saurav@abc.com | Book1    | family   |
+| Aditya    | singh    | malviyanagar | jaipur  | rajasthan | 12234 |  1223456789 | aditya@abc.com | Book2    | friends  |
+| dinesh    | Gahlawat | chintels     | gurgaon | haryana   | 12234 |  1223456789 | dinesh@abc.com | Book2    | friends  |
+| rajesh    | Gahlawat | chintels     | gurgaon | haryana   | 12234 |  1223456789 | rajesh@abc.com | Book1    | family   |
+| sumit     | phogat   | makrani      | bhiwani | haryana   | 12234 |  1223456789 | sumit@abc.com  | Book1    | friends  |
+| sumit     | phogat   | makrani      | bhiwani | haryana   | 12234 |  1223456789 | sumit@abc.com  | Book2    | family   |
++-----------+----------+--------------+---------+-----------+-------+-------------+----------------+----------+----------+
+8 rows in set (0.01 sec)
+
+
+
+mysql> create table address_table
+    -> (
+    -> firstname  varchar(20) NOT NULL,
+    -> lastname   varchar(20)  NOT NULL,
+    -> address    varchar(30)  NOT NULL,
+    -> city       varchar(20)  NOT NULL,
+    -> state      varchar(20)   NOT NULL,
+    -> zip        INT unsigned NOT NULL,
+    -> phonenumber BIGINT NOT NULL,
+    -> email       varchar(20)  NOT NULL
+    -> );
+Query OK, 0 rows affected (0.12 sec)
+
+mysql> describe address_table;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| firstname   | varchar(20)  | NO   |     | NULL    |       |
+| lastname    | varchar(20)  | NO   |     | NULL    |       |
+| address     | varchar(30)  | NO   |     | NULL    |       |
+| city        | varchar(20)  | NO   |     | NULL    |       |
+| state       | varchar(20)  | NO   |     | NULL    |       |
+| zip         | int unsigned | NO   |     | NULL    |       |
+| phonenumber | bigint       | NO   |     | NULL    |       |
+| email       | varchar(20)  | NO   |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+8 rows in set (0.01 sec)
+
+
+mysql> insert into address_table values
+    -> ('Mohit','Gahlawat','chintels','gurgaon','haryana',12234,1223456789,'mohit@abc.com'),
+    -> ('Priya','Gahlawat','chintels','gurgaon','haryana',12234,1223456789,'priya@abc.com'),
+    -> ('Saurav','Gahlawat','sector','bhiwani','haryana',12234,1223456789,'saurav@abc.com'),
+    -> ('Aditya','singh','chintels','jaipur','rajasthan',12234,1223456789,'aditya@abc.com');
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from address_table;
++-----------+----------+----------+---------+-----------+-------+-------------+----------------+
+| firstname | lastname | address  | city    | state     | zip   | phonenumber | email          |
++-----------+----------+----------+---------+-----------+-------+-------------+----------------+
+| Mohit     | Gahlawat | chintels | gurgaon | haryana   | 12234 |  1223456789 | mohit@abc.com  |
+| Priya     | Gahlawat | chintels | gurgaon | haryana   | 12234 |  1223456789 | priya@abc.com  |
+| Saurav    | Gahlawat | sector   | bhiwani | haryana   | 12234 |  1223456789 | saurav@abc.com |
+| Aditya    | singh    | chintels | jaipur  | rajasthan | 12234 |  1223456789 | aditya@abc.com |
++-----------+----------+----------+---------+-----------+-------+-------------+----------------+
+4 rows in set (0.00 sec)
+
+
+
+mysql> update address_table
+    -> set address = 'malviyanagar'
+    -> where firstname = 'Aditya';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> insert into address_table values
+    -> ('dinesh','Gahlawat','chintels','gurgaon','haryana',12234,1223456789,'dinesh@abc.com'),
+    -> ('rajesh','Gahlawat','chintels','gurgaon','haryana',12234,1223456789,'rajesh@abc.com');
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from address_table;
++-----------+----------+--------------+---------+-----------+-------+-------------+----------------+
+| firstname | lastname | address      | city    | state     | zip   | phonenumber | email          |
++-----------+----------+--------------+---------+-----------+-------+-------------+----------------+
+| Mohit     | Gahlawat | chintels     | gurgaon | haryana   | 12234 |  1223456789 | mohit@abc.com  |
+| Priya     | Gahlawat | chintels     | gurgaon | haryana   | 12234 |  1223456789 | priya@abc.com  |
+| Saurav    | Gahlawat | sector       | bhiwani | haryana   | 12234 |  1223456789 | saurav@abc.com |
+| Aditya    | singh    | malviyanagar | jaipur  | rajasthan | 12234 |  1223456789 | aditya@abc.com |
+| dinesh    | Gahlawat | chintels     | gurgaon | haryana   | 12234 |  1223456789 | dinesh@abc.com |
+| rajesh    | Gahlawat | chintels     | gurgaon | haryana   | 12234 |  1223456789 | rajesh@abc.com |
++-----------+----------+--------------+---------+-----------+-------+-------------+----------------+
+6 rows in set (0.00 sec)
+
+
+mysql> insert into address_table values
+    -> ('sumit','phogat','makrani','bhiwani','haryana',12234,1223456789,'sumit@abc.com');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from address_table;
++-----------+----------+--------------+---------+-----------+-------+-------------+----------------+
+| firstname | lastname | address      | city    | state     | zip   | phonenumber | email          |
++-----------+----------+--------------+---------+-----------+-------+-------------+----------------+
+| Mohit     | Gahlawat | chintels     | gurgaon | haryana   | 12234 |  1223456789 | mohit@abc.com  |
+| Priya     | Gahlawat | chintels     | gurgaon | haryana   | 12234 |  1223456789 | priya@abc.com  |
+| Saurav    | Gahlawat | sector       | bhiwani | haryana   | 12234 |  1223456789 | saurav@abc.com |
+| Aditya    | singh    | malviyanagar | jaipur  | rajasthan | 12234 |  1223456789 | aditya@abc.com |
+| dinesh    | Gahlawat | chintels     | gurgaon | haryana   | 12234 |  1223456789 | dinesh@abc.com |
+| rajesh    | Gahlawat | chintels     | gurgaon | haryana   | 12234 |  1223456789 | rajesh@abc.com |
+| sumit     | phogat   | makrani      | bhiwani | haryana   | 12234 |  1223456789 | sumit@abc.com  |
++-----------+----------+--------------+---------+-----------+-------+-------------+----------------+
+7 rows in set (0.00 sec)
+
+
+mysql> create table booktype
+    -> (
+    -> firstname varchar(30) not null,
+    -> book_type varchar(30) not null);
+Query OK, 0 rows affected (0.07 sec)
+
+
+mysql> describe booktype;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| firstname | varchar(30) | NO   |     | NULL    |       |
+| book_type | varchar(30) | NO   |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+2 rows in set (0.01 sec)
+
+mysql> insert into booktype values
+    -> ('Mohit','family'),
+    -> ('Priya','family'),
+    -> ('Saurav','family'),
+    -> ('Aditya','friends'),
+    -> ('dinesh','friends'),
+    -> ('rajesh','family'),
+    -> ('sumit','friends'),
+    -> ('sumit','family');
+Query OK, 8 rows affected (0.01 sec)
+Records: 8  Duplicates: 0  Warnings: 0
+
+mysql> select * from booktype;
++-----------+-----------+
+| firstname | book_type |
++-----------+-----------+
+| Mohit     | family    |
+| Priya     | family    |
+| Saurav    | family    |
+| Aditya    | friends   |
+| dinesh    | friends   |
+| rajesh    | family    |
+| sumit     | friends   |
+| sumit     | family    |
++-----------+-----------+
+8 rows in set (0.00 sec)
+
+
+mysql> create table book_name
+    -> (
+    -> book_type varchar(20) not null,
+    -> book_name varchar(30) not null);
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> describe book_name;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| book_type | varchar(20) | NO   |     | NULL    |       |
+| book_name | varchar(30) | NO   |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+2 rows in set (0.01 sec)
+
+
+mysql> insert into book_name
+    -> values
+    -> ('family','familybook'),
+    -> ('friends','friendsbook');
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+
+mysql> select * from book_name;
++-----------+-------------+
+| book_type | book_name   |
++-----------+-------------+
+| family    | familybook  |
+| friends   | friendsbook |
++-----------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> alter table book_name
+    -> add primary key(book_name);
+Query OK, 0 rows affected (0.10 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe book_name;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| book_type | varchar(20) | NO   |     | NULL    |       |
+| book_name | varchar(30) | NO   | PRI | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+2 rows in set (0.01 sec)
+
+
+mysql> describe address_table;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| firstname   | varchar(20)  | NO   |     | NULL    |       |
+| lastname    | varchar(20)  | NO   |     | NULL    |       |
+| address     | varchar(30)  | NO   |     | NULL    |       |
+| city        | varchar(20)  | NO   |     | NULL    |       |
+| state       | varchar(20)  | NO   |     | NULL    |       |
+| zip         | int unsigned | NO   |     | NULL    |       |
+| phonenumber | bigint       | NO   |     | NULL    |       |
+| email       | varchar(20)  | NO   |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql> alter table address_table
+    -> add primary key (firstname);
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe address_table;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| firstname   | varchar(20)  | NO   | PRI | NULL    |       |
+| lastname    | varchar(20)  | NO   |     | NULL    |       |
+| address     | varchar(30)  | NO   |     | NULL    |       |
+| city        | varchar(20)  | NO   |     | NULL    |       |
+| state       | varchar(20)  | NO   |     | NULL    |       |
+| zip         | int unsigned | NO   |     | NULL    |       |
+| phonenumber | bigint       | NO   |     | NULL    |       |
+| email       | varchar(20)  | NO   |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+8 rows in set (0.01 sec)
+
+mysql> alter table booktype
+    -> add foreign key (firstname) references address_table(firstname);
+Query OK, 8 rows affected (0.09 sec)
+Records: 8  Duplicates: 0  Warnings: 0
+
+mysql> describe booktype;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| firstname | varchar(30) | NO   | MUL | NULL    |       |
+| book_type | varchar(30) | NO   |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+
+mysql> alter table book_name
+    -> drop primary key;
+Query OK, 2 rows affected (0.10 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> alter table book_name
+    -> add primary key(book_type);
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table booktype
+    -> add foreign key (book_type) references book_name(book_type);
+Query OK, 8 rows affected (0.09 sec)
+Records: 8  Duplicates: 0  Warnings: 0
+
+mysql> describe booktype;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| firstname | varchar(30) | NO   | MUL | NULL    |       |
+| book_type | varchar(30) | NO   | MUL | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+2 rows in set (0.01 sec)
+
+mysql> select * from address_table;
++-----------+----------+--------------+---------+-----------+-------+-------------+----------------+
+| firstname | lastname | address      | city    | state     | zip   | phonenumber | email          |
++-----------+----------+--------------+---------+-----------+-------+-------------+----------------+
+| Aditya    | singh    | malviyanagar | jaipur  | rajasthan | 12234 |  1223456789 | aditya@abc.com |
+| dinesh    | Gahlawat | chintels     | gurgaon | haryana   | 12234 |  1223456789 | dinesh@abc.com |
+| Mohit     | Gahlawat | chintels     | gurgaon | haryana   | 12234 |  1223456789 | mohit@abc.com  |
+| Priya     | Gahlawat | chintels     | gurgaon | haryana   | 12234 |  1223456789 | priya@abc.com  |
+| rajesh    | Gahlawat | chintels     | gurgaon | haryana   | 12234 |  1223456789 | rajesh@abc.com |
+| Saurav    | Gahlawat | sector       | bhiwani | haryana   | 12234 |  1223456789 | saurav@abc.com |
+| sumit     | phogat   | makrani      | bhiwani | haryana   | 12234 |  1223456789 | sumit@abc.com  |
++-----------+----------+--------------+---------+-----------+-------+-------------+----------------+
+7 rows in set (0.00 sec)
+
+mysql> select * from booktype;
++-----------+-----------+
+| firstname | book_type |
++-----------+-----------+
+| Mohit     | family    |
+| Priya     | family    |
+| Saurav    | family    |
+| Aditya    | friends   |
+| dinesh    | friends   |
+| rajesh    | family    |
+| sumit     | friends   |
+| sumit     | family    |
++-----------+-----------+
+8 rows in set (0.00 sec)
+
+mysql> select * from book_name;
++-----------+-------------+
+| book_type | book_name   |
++-----------+-------------+
+| family    | familybook  |
+| friends   | friendsbook |
++-----------+-------------+
+2 rows in set (0.01 sec)
+
+mysql> select firstname , lastname from address_table
+    -> where city = 'gurgaon';
++-----------+----------+
+| firstname | lastname |
++-----------+----------+
+| dinesh    | Gahlawat |
+| Mohit     | Gahlawat |
+| Priya     | Gahlawat |
+| rajesh    | Gahlawat |
++-----------+----------+
+4 rows in set (0.00 sec)
+
+mysql> select firstname , lastname from address_table
+    -> where state = 'haryana';
++-----------+----------+
+| firstname | lastname |
++-----------+----------+
+| dinesh    | Gahlawat |
+| Mohit     | Gahlawat |
+| Priya     | Gahlawat |
+| rajesh    | Gahlawat |
+| Saurav    | Gahlawat |
+| sumit     | phogat   |
++-----------+----------+
+6 rows in set (0.00 sec)
+
+mysql> select count(firstname) from address_table
+    -> where city = 'gurgaon'
+    -> group by city;
++------------------+
+| count(firstname) |
++------------------+
+|                4 |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> select count(firstname) from address_table
+    -> where state = 'haryana';
++------------------+
+| count(firstname) |
++------------------+
+|                6 |
++------------------+
+1 row in set (0.00 sec)
+
+
+mysql> select * from  address_table where city = 'gurgaon'
+    -> order by firstname;
++-----------+----------+----------+---------+---------+-------+-------------+----------------+
+| firstname | lastname | address  | city    | state   | zip   | phonenumber | email          |
++-----------+----------+----------+---------+---------+-------+-------------+----------------+
+| dinesh    | Gahlawat | chintels | gurgaon | haryana | 12234 |  1223456789 | dinesh@abc.com |
+| Mohit     | Gahlawat | chintels | gurgaon | haryana | 12234 |  1223456789 | mohit@abc.com  |
+| Priya     | Gahlawat | chintels | gurgaon | haryana | 12234 |  1223456789 | priya@abc.com  |
+| rajesh    | Gahlawat | chintels | gurgaon | haryana | 12234 |  1223456789 | rajesh@abc.com |
++-----------+----------+----------+---------+---------+-------+-------------+----------------+
+4 rows in set (0.00 sec)

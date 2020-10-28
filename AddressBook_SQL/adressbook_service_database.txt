@@ -1,0 +1,159 @@
+//uc1
+
+create database address_book_service;
+
+show databases;
+
+use address_book_service;
+
+select database();
+
+
+
+//uc2
+
+
+create table AddressBook_table
+(
+firstname  varchar(20) NOT NULL,
+lastname   varchar(20)  NOT NULL,
+address    varchar(30)  NOT NULL,
+city       varchar(20)  NOT NULL,
+state      varchar(20)   NOT NULL,
+zip        INT unsigned NOT NULL,
+phonenumber BIGINT NOT NULL,
+email       varchar(20)  NOT NULL
+);
+
+
+describe addressbook_table;
+
+
+
+///uc3
+
+insert into addressbook_table values
+('Mohit','Gahlawat','chintels','gurgaon','haryana',12234,1223456789,'mohit@abc.com'),
+('Priya','Gahlawat','chintels','gurgaon','haryana',12234,1223456789,'priya@abc.com'),
+('Saurav','Gahlawat','sector','bhiwani','haryana',12234,1223456789,'saurav@abc.com'),
+('Aditya','singh','chintels','jaipur','rajasthan',12234,1223456789,'aditya@abc.com');
+
+select * from addressbook_table;
+
+
+///uc4
+
+
+update addressbook_table 
+set address = 'malviyanagar'
+where firstname = 'Aditya';
+
+
+
+///uc5
+
+
+insert into addressbook_table values
+('Mohit1','Gahlawat','chintels','gurgaon','haryana',12234,1223456789,'mohit@abc.com');
+
+delete from  addressbook_table 
+where firstname = 'Mohit1';
+
+
+
+
+///uc6
+
+select firstname , lastname from addressbook_table
+where city = 'gurgaon';
+
+select firstname , lastname from addressbook_table
+where state = 'haryana';
+
+
+
+
+///uc7 
+
+select count(firstname) from addressbook_table
+where city = 'gurgaon'
+group by city;
+
+
+select count(firstname) from addressbook_table
+where state = 'haryana'
+group by state;
+
+
+///uc8
+
+insert into addressbook_table values
+('dinesh','Gahlawat','chintels','gurgaon','haryana',12234,1223456789,'dinesh@abc.com'),
+('rajesh','Gahlawat','chintels','gurgaon','haryana',12234,1223456789,'rajesh@abc.com');
+
+
+
+select * from addressbook_table
+where city = 'gurgaon'
+order by firstname;
+
+
+
+//uc9 
+
+
+Alter table addressbook_table
+add booktype varchar(20) after email;
+
+Alter table addressbook_table
+add bookname varchar(20) after email;
+
+select * from addressbook_table;
+
+
+update addressbook_table
+set bookname = 'Book1';
+
+
+update addressbook_table
+set booktype = 'family';
+
+update addressbook_table
+set bookname = 'Book2'
+where firstname = 'dinesh' or firstname = 'Aditya';
+
+
+update addressbook_table
+set booktype = 'friends'
+where firstname = 'dinesh' or firstname = 'Aditya';
+
+
+
+
+//uc10
+
+select count(firstname)
+from addressbook_table
+where booktype = 'family';
+
+
+select count(firstname)
+from addressbook_table
+where booktype = 'friends';
+
+
+
+//uc11
+
+
+insert into addressbook_table values
+('sumit','phogat','makrani','bhiwani','haryana',12234,1223456789,'sumit@abc.com','Book1','friends');
+
+insert into addressbook_table values
+('sumit','phogat','makrani','bhiwani','haryana',12234,1223456789,'sumit@abc.com','Book2','family');
+
+
+
+
+
+
